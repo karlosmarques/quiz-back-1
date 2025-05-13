@@ -3,7 +3,7 @@ import publicRoutes from "./routes/publica/publica.js"
 
 
 const app = express()
-
+app.use(express.json())
 
 app.use("/", publicRoutes)
 
