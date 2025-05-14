@@ -1,6 +1,6 @@
 generator client {
   provider = "prisma-client-js"
-  output   = "../generated/prisma"
+  output   = "../node_modules/.prisma/client"
 }
 
 datasource db {
@@ -8,7 +8,7 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Registro {
+model Registro{
   id             Int      @id @default(autoincrement())
   nome           String   @db.VarChar(100)
   email          String   @unique(map: "email") @db.VarChar(100)
