@@ -133,7 +133,7 @@ exports.Prisma.SortOrder = {
   desc: 'desc'
 };
 
-exports.Prisma.registroOrderByRelevanceFieldEnum = {
+exports.Prisma.RegistroOrderByRelevanceFieldEnum = {
   nome: 'nome',
   email: 'email',
   senha: 'senha'
@@ -141,7 +141,7 @@ exports.Prisma.registroOrderByRelevanceFieldEnum = {
 
 
 exports.Prisma.ModelName = {
-  registro: 'registro'
+  Registro: 'Registro'
 };
 
 /**

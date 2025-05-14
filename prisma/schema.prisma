@@ -8,7 +8,7 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model registro {
+model Registro {
   id             Int      @id @default(autoincrement())
   nome           String   @db.VarChar(100)
   email          String   @unique(map: "email") @db.VarChar(100)

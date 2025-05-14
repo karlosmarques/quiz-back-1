@@ -14,10 +14,10 @@ export type PrismaPromise<T> = $Public.PrismaPromise<T>
 
 
 /**
- * Model registro
+ * Model Registro
  * 
  */
-export type registro = $Result.DefaultSelection<Prisma.$registroPayload>
+export type Registro = $Result.DefaultSelection<Prisma.$RegistroPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -145,14 +145,14 @@ export class PrismaClient<
   }>>
 
       /**
-   * `prisma.registro`: Exposes CRUD operations for the **registro** model.
+   * `prisma.registro`: Exposes CRUD operations for the **Registro** model.
     * Example usage:
     * ```ts
     * // Fetch zero or more Registros
     * const registros = await prisma.registro.findMany()
     * ```
     */
-  get registro(): Prisma.registroDelegate<ExtArgs, ClientOptions>;
+  get registro(): Prisma.RegistroDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -593,7 +593,7 @@ export namespace Prisma {
 
 
   export const ModelName: {
-    registro: 'registro'
+    Registro: 'Registro'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -616,68 +616,68 @@ export namespace Prisma {
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
-      registro: {
-        payload: Prisma.$registroPayload<ExtArgs>
-        fields: Prisma.registroFieldRefs
+      Registro: {
+        payload: Prisma.$RegistroPayload<ExtArgs>
+        fields: Prisma.RegistroFieldRefs
         operations: {
           findUnique: {
-            args: Prisma.registroFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$registroPayload> | null
+            args: Prisma.RegistroFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RegistroPayload> | null
           }
           findUniqueOrThrow: {
-            args: Prisma.registroFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$registroPayload>
+            args: Prisma.RegistroFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RegistroPayload>
           }
           findFirst: {
-            args: Prisma.registroFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$registroPayload> | null
+            args: Prisma.RegistroFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RegistroPayload> | null
           }
           findFirstOrThrow: {
-            args: Prisma.registroFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$registroPayload>
+            args: Prisma.RegistroFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RegistroPayload>
           }
           findMany: {
-            args: Prisma.registroFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$registroPayload>[]
+            args: Prisma.RegistroFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RegistroPayload>[]
           }
           create: {
-            args: Prisma.registroCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$registroPayload>
+            args: Prisma.RegistroCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RegistroPayload>
           }
           createMany: {
-            args: Prisma.registroCreateManyArgs<ExtArgs>
+            args: Prisma.RegistroCreateManyArgs<ExtArgs>
             result: BatchPayload
           }
           delete: {
-            args: Prisma.registroDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$registroPayload>
+            args: Prisma.RegistroDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RegistroPayload>
           }
           update: {
-            args: Prisma.registroUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$registroPayload>
+            args: Prisma.RegistroUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RegistroPayload>
           }
           deleteMany: {
-            args: Prisma.registroDeleteManyArgs<ExtArgs>
+            args: Prisma.RegistroDeleteManyArgs<ExtArgs>
             result: BatchPayload
           }
           updateMany: {
-            args: Prisma.registroUpdateManyArgs<ExtArgs>
+            args: Prisma.RegistroUpdateManyArgs<ExtArgs>
             result: BatchPayload
           }
           upsert: {
-            args: Prisma.registroUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$registroPayload>
+            args: Prisma.RegistroUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RegistroPayload>
           }
           aggregate: {
             args: Prisma.RegistroAggregateArgs<ExtArgs>
             result: $Utils.Optional<AggregateRegistro>
           }
           groupBy: {
-            args: Prisma.registroGroupByArgs<ExtArgs>
+            args: Prisma.RegistroGroupByArgs<ExtArgs>
             result: $Utils.Optional<RegistroGroupByOutputType>[]
           }
           count: {
-            args: Prisma.registroCountArgs<ExtArgs>
+            args: Prisma.RegistroCountArgs<ExtArgs>
             result: $Utils.Optional<RegistroCountAggregateOutputType> | number
           }
         }
@@ -766,7 +766,7 @@ export namespace Prisma {
     omit?: Prisma.GlobalOmitConfig
   }
   export type GlobalOmitConfig = {
-    registro?: registroOmit
+    registro?: RegistroOmit
   }
 
   /* Types for Logging */
@@ -862,7 +862,7 @@ export namespace Prisma {
    */
 
   /**
-   * Model registro
+   * Model Registro
    */
 
   export type AggregateRegistro = {
@@ -942,37 +942,37 @@ export namespace Prisma {
 
   export type RegistroAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which registro to aggregate.
+     * Filter which Registro to aggregate.
      */
-    where?: registroWhereInput
+    where?: RegistroWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of registros to fetch.
+     * Determine the order of Registros to fetch.
      */
-    orderBy?: registroOrderByWithRelationInput | registroOrderByWithRelationInput[]
+    orderBy?: RegistroOrderByWithRelationInput | RegistroOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the start position
      */
-    cursor?: registroWhereUniqueInput
+    cursor?: RegistroWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` registros from the position of the cursor.
+     * Take `±n` Registros from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` registros.
+     * Skip the first `n` Registros.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
-     * Count returned registros
+     * Count returned Registros
     **/
     _count?: true | RegistroCountAggregateInputType
     /**
@@ -1012,11 +1012,11 @@ export namespace Prisma {
 
 
 
-  export type registroGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: registroWhereInput
-    orderBy?: registroOrderByWithAggregationInput | registroOrderByWithAggregationInput[]
+  export type RegistroGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: RegistroWhereInput
+    orderBy?: RegistroOrderByWithAggregationInput | RegistroOrderByWithAggregationInput[]
     by: RegistroScalarFieldEnum[] | RegistroScalarFieldEnum
-    having?: registroScalarWhereWithAggregatesInput
+    having?: RegistroScalarWhereWithAggregatesInput
     take?: number
     skip?: number
     _count?: RegistroCountAggregateInputType | true
@@ -1039,7 +1039,7 @@ export namespace Prisma {
     _max: RegistroMaxAggregateOutputType | null
   }
 
-  type GetRegistroGroupByPayload<T extends registroGroupByArgs> = Prisma.PrismaPromise<
+  type GetRegistroGroupByPayload<T extends RegistroGroupByArgs> = Prisma.PrismaPromise<
     Array<
       PickEnumerable<RegistroGroupByOutputType, T['by']> &
         {
@@ -1053,7 +1053,7 @@ export namespace Prisma {
     >
 
 
-  export type registroSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type RegistroSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     nome?: boolean
     email?: boolean
@@ -1063,7 +1063,7 @@ export namespace Prisma {
 
 
 
-  export type registroSelectScalar = {
+  export type RegistroSelectScalar = {
     id?: boolean
     nome?: boolean
     email?: boolean
@@ -1071,10 +1071,10 @@ export namespace Prisma {
     datanascimento?: boolean
   }
 
-  export type registroOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "nome" | "email" | "senha" | "datanascimento", ExtArgs["result"]["registro"]>
+  export type RegistroOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "nome" | "email" | "senha" | "datanascimento", ExtArgs["result"]["registro"]>
 
-  export type $registroPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "registro"
+  export type $RegistroPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Registro"
     objects: {}
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -1086,18 +1086,18 @@ export namespace Prisma {
     composites: {}
   }
 
-  type registroGetPayload<S extends boolean | null | undefined | registroDefaultArgs> = $Result.GetResult<Prisma.$registroPayload, S>
+  type RegistroGetPayload<S extends boolean | null | undefined | RegistroDefaultArgs> = $Result.GetResult<Prisma.$RegistroPayload, S>
 
-  type registroCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<registroFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+  type RegistroCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<RegistroFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
       select?: RegistroCountAggregateInputType | true
     }
 
-  export interface registroDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['registro'], meta: { name: 'registro' } }
+  export interface RegistroDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Registro'], meta: { name: 'Registro' } }
     /**
      * Find zero or one Registro that matches the filter.
-     * @param {registroFindUniqueArgs} args - Arguments to find a Registro
+     * @param {RegistroFindUniqueArgs} args - Arguments to find a Registro
      * @example
      * // Get one Registro
      * const registro = await prisma.registro.findUnique({
@@ -1106,12 +1106,12 @@ export namespace Prisma {
      *   }
      * })
      */
-    findUnique<T extends registroFindUniqueArgs>(args: SelectSubset<T, registroFindUniqueArgs<ExtArgs>>): Prisma__registroClient<$Result.GetResult<Prisma.$registroPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findUnique<T extends RegistroFindUniqueArgs>(args: SelectSubset<T, RegistroFindUniqueArgs<ExtArgs>>): Prisma__RegistroClient<$Result.GetResult<Prisma.$RegistroPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
      * Find one Registro that matches the filter or throw an error with `error.code='P2025'`
      * if no matches were found.
-     * @param {registroFindUniqueOrThrowArgs} args - Arguments to find a Registro
+     * @param {RegistroFindUniqueOrThrowArgs} args - Arguments to find a Registro
      * @example
      * // Get one Registro
      * const registro = await prisma.registro.findUniqueOrThrow({
@@ -1120,13 +1120,13 @@ export namespace Prisma {
      *   }
      * })
      */
-    findUniqueOrThrow<T extends registroFindUniqueOrThrowArgs>(args: SelectSubset<T, registroFindUniqueOrThrowArgs<ExtArgs>>): Prisma__registroClient<$Result.GetResult<Prisma.$registroPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findUniqueOrThrow<T extends RegistroFindUniqueOrThrowArgs>(args: SelectSubset<T, RegistroFindUniqueOrThrowArgs<ExtArgs>>): Prisma__RegistroClient<$Result.GetResult<Prisma.$RegistroPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Find the first Registro that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {registroFindFirstArgs} args - Arguments to find a Registro
+     * @param {RegistroFindFirstArgs} args - Arguments to find a Registro
      * @example
      * // Get one Registro
      * const registro = await prisma.registro.findFirst({
@@ -1135,14 +1135,14 @@ export namespace Prisma {
      *   }
      * })
      */
-    findFirst<T extends registroFindFirstArgs>(args?: SelectSubset<T, registroFindFirstArgs<ExtArgs>>): Prisma__registroClient<$Result.GetResult<Prisma.$registroPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findFirst<T extends RegistroFindFirstArgs>(args?: SelectSubset<T, RegistroFindFirstArgs<ExtArgs>>): Prisma__RegistroClient<$Result.GetResult<Prisma.$RegistroPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
      * Find the first Registro that matches the filter or
      * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {registroFindFirstOrThrowArgs} args - Arguments to find a Registro
+     * @param {RegistroFindFirstOrThrowArgs} args - Arguments to find a Registro
      * @example
      * // Get one Registro
      * const registro = await prisma.registro.findFirstOrThrow({
@@ -1151,13 +1151,13 @@ export namespace Prisma {
      *   }
      * })
      */
-    findFirstOrThrow<T extends registroFindFirstOrThrowArgs>(args?: SelectSubset<T, registroFindFirstOrThrowArgs<ExtArgs>>): Prisma__registroClient<$Result.GetResult<Prisma.$registroPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findFirstOrThrow<T extends RegistroFindFirstOrThrowArgs>(args?: SelectSubset<T, RegistroFindFirstOrThrowArgs<ExtArgs>>): Prisma__RegistroClient<$Result.GetResult<Prisma.$RegistroPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Find zero or more Registros that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {registroFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @param {RegistroFindManyArgs} args - Arguments to filter and select certain fields only.
      * @example
      * // Get all Registros
      * const registros = await prisma.registro.findMany()
@@ -1169,11 +1169,11 @@ export namespace Prisma {
      * const registroWithIdOnly = await prisma.registro.findMany({ select: { id: true } })
      * 
      */
-    findMany<T extends registroFindManyArgs>(args?: SelectSubset<T, registroFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$registroPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+    findMany<T extends RegistroFindManyArgs>(args?: SelectSubset<T, RegistroFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RegistroPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
 
     /**
      * Create a Registro.
-     * @param {registroCreateArgs} args - Arguments to create a Registro.
+     * @param {RegistroCreateArgs} args - Arguments to create a Registro.
      * @example
      * // Create one Registro
      * const Registro = await prisma.registro.create({
@@ -1183,11 +1183,11 @@ export namespace Prisma {
      * })
      * 
      */
-    create<T extends registroCreateArgs>(args: SelectSubset<T, registroCreateArgs<ExtArgs>>): Prisma__registroClient<$Result.GetResult<Prisma.$registroPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    create<T extends RegistroCreateArgs>(args: SelectSubset<T, RegistroCreateArgs<ExtArgs>>): Prisma__RegistroClient<$Result.GetResult<Prisma.$RegistroPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Create many Registros.
-     * @param {registroCreateManyArgs} args - Arguments to create many Registros.
+     * @param {RegistroCreateManyArgs} args - Arguments to create many Registros.
      * @example
      * // Create many Registros
      * const registro = await prisma.registro.createMany({
@@ -1197,11 +1197,11 @@ export namespace Prisma {
      * })
      *     
      */
-    createMany<T extends registroCreateManyArgs>(args?: SelectSubset<T, registroCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    createMany<T extends RegistroCreateManyArgs>(args?: SelectSubset<T, RegistroCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
      * Delete a Registro.
-     * @param {registroDeleteArgs} args - Arguments to delete one Registro.
+     * @param {RegistroDeleteArgs} args - Arguments to delete one Registro.
      * @example
      * // Delete one Registro
      * const Registro = await prisma.registro.delete({
@@ -1211,11 +1211,11 @@ export namespace Prisma {
      * })
      * 
      */
-    delete<T extends registroDeleteArgs>(args: SelectSubset<T, registroDeleteArgs<ExtArgs>>): Prisma__registroClient<$Result.GetResult<Prisma.$registroPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    delete<T extends RegistroDeleteArgs>(args: SelectSubset<T, RegistroDeleteArgs<ExtArgs>>): Prisma__RegistroClient<$Result.GetResult<Prisma.$RegistroPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Update one Registro.
-     * @param {registroUpdateArgs} args - Arguments to update one Registro.
+     * @param {RegistroUpdateArgs} args - Arguments to update one Registro.
      * @example
      * // Update one Registro
      * const registro = await prisma.registro.update({
@@ -1228,11 +1228,11 @@ export namespace Prisma {
      * })
      * 
      */
-    update<T extends registroUpdateArgs>(args: SelectSubset<T, registroUpdateArgs<ExtArgs>>): Prisma__registroClient<$Result.GetResult<Prisma.$registroPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    update<T extends RegistroUpdateArgs>(args: SelectSubset<T, RegistroUpdateArgs<ExtArgs>>): Prisma__RegistroClient<$Result.GetResult<Prisma.$RegistroPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Delete zero or more Registros.
-     * @param {registroDeleteManyArgs} args - Arguments to filter Registros to delete.
+     * @param {RegistroDeleteManyArgs} args - Arguments to filter Registros to delete.
      * @example
      * // Delete a few Registros
      * const { count } = await prisma.registro.deleteMany({
@@ -1242,13 +1242,13 @@ export namespace Prisma {
      * })
      * 
      */
-    deleteMany<T extends registroDeleteManyArgs>(args?: SelectSubset<T, registroDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    deleteMany<T extends RegistroDeleteManyArgs>(args?: SelectSubset<T, RegistroDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
      * Update zero or more Registros.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {registroUpdateManyArgs} args - Arguments to update one or more rows.
+     * @param {RegistroUpdateManyArgs} args - Arguments to update one or more rows.
      * @example
      * // Update many Registros
      * const registro = await prisma.registro.updateMany({
@@ -1261,11 +1261,11 @@ export namespace Prisma {
      * })
      * 
      */
-    updateMany<T extends registroUpdateManyArgs>(args: SelectSubset<T, registroUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    updateMany<T extends RegistroUpdateManyArgs>(args: SelectSubset<T, RegistroUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
      * Create or update one Registro.
-     * @param {registroUpsertArgs} args - Arguments to update or create a Registro.
+     * @param {RegistroUpsertArgs} args - Arguments to update or create a Registro.
      * @example
      * // Update or create a Registro
      * const registro = await prisma.registro.upsert({
@@ -1280,14 +1280,14 @@ export namespace Prisma {
      *   }
      * })
      */
-    upsert<T extends registroUpsertArgs>(args: SelectSubset<T, registroUpsertArgs<ExtArgs>>): Prisma__registroClient<$Result.GetResult<Prisma.$registroPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    upsert<T extends RegistroUpsertArgs>(args: SelectSubset<T, RegistroUpsertArgs<ExtArgs>>): Prisma__RegistroClient<$Result.GetResult<Prisma.$RegistroPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
 
     /**
      * Count the number of Registros.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {registroCountArgs} args - Arguments to filter Registros to count.
+     * @param {RegistroCountArgs} args - Arguments to filter Registros to count.
      * @example
      * // Count the number of Registros
      * const count = await prisma.registro.count({
@@ -1296,8 +1296,8 @@ export namespace Prisma {
      *   }
      * })
     **/
-    count<T extends registroCountArgs>(
-      args?: Subset<T, registroCountArgs>,
+    count<T extends RegistroCountArgs>(
+      args?: Subset<T, RegistroCountArgs>,
     ): Prisma.PrismaPromise<
       T extends $Utils.Record<'select', any>
         ? T['select'] extends true
@@ -1336,7 +1336,7 @@ export namespace Prisma {
      * Group by Registro.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {registroGroupByArgs} args - Group by arguments.
+     * @param {RegistroGroupByArgs} args - Group by arguments.
      * @example
      * // Group by city, order by createdAt, get count
      * const result = await prisma.user.groupBy({
@@ -1351,14 +1351,14 @@ export namespace Prisma {
      * 
     **/
     groupBy<
-      T extends registroGroupByArgs,
+      T extends RegistroGroupByArgs,
       HasSelectOrTake extends Or<
         Extends<'skip', Keys<T>>,
         Extends<'take', Keys<T>>
       >,
       OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: registroGroupByArgs['orderBy'] }
-        : { orderBy?: registroGroupByArgs['orderBy'] },
+        ? { orderBy: RegistroGroupByArgs['orderBy'] }
+        : { orderBy?: RegistroGroupByArgs['orderBy'] },
       OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
       ByFields extends MaybeTupleToUnion<T['by']>,
       ByValid extends Has<ByFields, OrderFields>,
@@ -1407,20 +1407,20 @@ export namespace Prisma {
             ? never
             : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
         }[OrderFields]
-    >(args: SubsetIntersection<T, registroGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetRegistroGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+    >(args: SubsetIntersection<T, RegistroGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetRegistroGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
   /**
-   * Fields of the registro model
+   * Fields of the Registro model
    */
-  readonly fields: registroFieldRefs;
+  readonly fields: RegistroFieldRefs;
   }
 
   /**
-   * The delegate class that acts as a "Promise-like" for registro.
+   * The delegate class that acts as a "Promise-like" for Registro.
    * Why is this prefixed with `Prisma__`?
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__registroClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__RegistroClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -1448,332 +1448,332 @@ export namespace Prisma {
 
 
   /**
-   * Fields of the registro model
+   * Fields of the Registro model
    */
-  interface registroFieldRefs {
-    readonly id: FieldRef<"registro", 'Int'>
-    readonly nome: FieldRef<"registro", 'String'>
-    readonly email: FieldRef<"registro", 'String'>
-    readonly senha: FieldRef<"registro", 'String'>
-    readonly datanascimento: FieldRef<"registro", 'DateTime'>
+  interface RegistroFieldRefs {
+    readonly id: FieldRef<"Registro", 'Int'>
+    readonly nome: FieldRef<"Registro", 'String'>
+    readonly email: FieldRef<"Registro", 'String'>
+    readonly senha: FieldRef<"Registro", 'String'>
+    readonly datanascimento: FieldRef<"Registro", 'DateTime'>
   }
     
 
   // Custom InputTypes
   /**
-   * registro findUnique
+   * Registro findUnique
    */
-  export type registroFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type RegistroFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the registro
+     * Select specific fields to fetch from the Registro
      */
-    select?: registroSelect<ExtArgs> | null
+    select?: RegistroSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the registro
+     * Omit specific fields from the Registro
      */
-    omit?: registroOmit<ExtArgs> | null
+    omit?: RegistroOmit<ExtArgs> | null
     /**
-     * Filter, which registro to fetch.
+     * Filter, which Registro to fetch.
      */
-    where: registroWhereUniqueInput
+    where: RegistroWhereUniqueInput
   }
 
   /**
-   * registro findUniqueOrThrow
+   * Registro findUniqueOrThrow
    */
-  export type registroFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type RegistroFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the registro
+     * Select specific fields to fetch from the Registro
      */
-    select?: registroSelect<ExtArgs> | null
+    select?: RegistroSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the registro
+     * Omit specific fields from the Registro
      */
-    omit?: registroOmit<ExtArgs> | null
+    omit?: RegistroOmit<ExtArgs> | null
     /**
-     * Filter, which registro to fetch.
+     * Filter, which Registro to fetch.
      */
-    where: registroWhereUniqueInput
+    where: RegistroWhereUniqueInput
   }
 
   /**
-   * registro findFirst
+   * Registro findFirst
    */
-  export type registroFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type RegistroFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the registro
+     * Select specific fields to fetch from the Registro
      */
-    select?: registroSelect<ExtArgs> | null
+    select?: RegistroSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the registro
+     * Omit specific fields from the Registro
      */
-    omit?: registroOmit<ExtArgs> | null
+    omit?: RegistroOmit<ExtArgs> | null
     /**
-     * Filter, which registro to fetch.
+     * Filter, which Registro to fetch.
      */
-    where?: registroWhereInput
+    where?: RegistroWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of registros to fetch.
+     * Determine the order of Registros to fetch.
      */
-    orderBy?: registroOrderByWithRelationInput | registroOrderByWithRelationInput[]
+    orderBy?: RegistroOrderByWithRelationInput | RegistroOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for registros.
+     * Sets the position for searching for Registros.
      */
-    cursor?: registroWhereUniqueInput
+    cursor?: RegistroWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` registros from the position of the cursor.
+     * Take `±n` Registros from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` registros.
+     * Skip the first `n` Registros.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of registros.
+     * Filter by unique combinations of Registros.
      */
     distinct?: RegistroScalarFieldEnum | RegistroScalarFieldEnum[]
   }
 
   /**
-   * registro findFirstOrThrow
+   * Registro findFirstOrThrow
    */
-  export type registroFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type RegistroFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the registro
+     * Select specific fields to fetch from the Registro
      */
-    select?: registroSelect<ExtArgs> | null
+    select?: RegistroSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the registro
+     * Omit specific fields from the Registro
      */
-    omit?: registroOmit<ExtArgs> | null
+    omit?: RegistroOmit<ExtArgs> | null
     /**
-     * Filter, which registro to fetch.
+     * Filter, which Registro to fetch.
      */
-    where?: registroWhereInput
+    where?: RegistroWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of registros to fetch.
+     * Determine the order of Registros to fetch.
      */
-    orderBy?: registroOrderByWithRelationInput | registroOrderByWithRelationInput[]
+    orderBy?: RegistroOrderByWithRelationInput | RegistroOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for registros.
+     * Sets the position for searching for Registros.
      */
-    cursor?: registroWhereUniqueInput
+    cursor?: RegistroWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` registros from the position of the cursor.
+     * Take `±n` Registros from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` registros.
+     * Skip the first `n` Registros.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of registros.
+     * Filter by unique combinations of Registros.
      */
     distinct?: RegistroScalarFieldEnum | RegistroScalarFieldEnum[]
   }
 
   /**
-   * registro findMany
+   * Registro findMany
    */
-  export type registroFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type RegistroFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the registro
+     * Select specific fields to fetch from the Registro
      */
-    select?: registroSelect<ExtArgs> | null
+    select?: RegistroSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the registro
+     * Omit specific fields from the Registro
      */
-    omit?: registroOmit<ExtArgs> | null
+    omit?: RegistroOmit<ExtArgs> | null
     /**
-     * Filter, which registros to fetch.
+     * Filter, which Registros to fetch.
      */
-    where?: registroWhereInput
+    where?: RegistroWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of registros to fetch.
+     * Determine the order of Registros to fetch.
      */
-    orderBy?: registroOrderByWithRelationInput | registroOrderByWithRelationInput[]
+    orderBy?: RegistroOrderByWithRelationInput | RegistroOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for listing registros.
+     * Sets the position for listing Registros.
      */
-    cursor?: registroWhereUniqueInput
+    cursor?: RegistroWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` registros from the position of the cursor.
+     * Take `±n` Registros from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` registros.
+     * Skip the first `n` Registros.
      */
     skip?: number
     distinct?: RegistroScalarFieldEnum | RegistroScalarFieldEnum[]
   }
 
   /**
-   * registro create
+   * Registro create
    */
-  export type registroCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type RegistroCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the registro
+     * Select specific fields to fetch from the Registro
      */
-    select?: registroSelect<ExtArgs> | null
+    select?: RegistroSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the registro
+     * Omit specific fields from the Registro
      */
-    omit?: registroOmit<ExtArgs> | null
+    omit?: RegistroOmit<ExtArgs> | null
     /**
-     * The data needed to create a registro.
+     * The data needed to create a Registro.
      */
-    data: XOR<registroCreateInput, registroUncheckedCreateInput>
+    data: XOR<RegistroCreateInput, RegistroUncheckedCreateInput>
   }
 
   /**
-   * registro createMany
+   * Registro createMany
    */
-  export type registroCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type RegistroCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to create many registros.
+     * The data used to create many Registros.
      */
-    data: registroCreateManyInput | registroCreateManyInput[]
+    data: RegistroCreateManyInput | RegistroCreateManyInput[]
     skipDuplicates?: boolean
   }
 
   /**
-   * registro update
+   * Registro update
    */
-  export type registroUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type RegistroUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the registro
+     * Select specific fields to fetch from the Registro
      */
-    select?: registroSelect<ExtArgs> | null
+    select?: RegistroSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the registro
+     * Omit specific fields from the Registro
      */
-    omit?: registroOmit<ExtArgs> | null
+    omit?: RegistroOmit<ExtArgs> | null
     /**
-     * The data needed to update a registro.
+     * The data needed to update a Registro.
      */
-    data: XOR<registroUpdateInput, registroUncheckedUpdateInput>
+    data: XOR<RegistroUpdateInput, RegistroUncheckedUpdateInput>
     /**
-     * Choose, which registro to update.
+     * Choose, which Registro to update.
      */
-    where: registroWhereUniqueInput
+    where: RegistroWhereUniqueInput
   }
 
   /**
-   * registro updateMany
+   * Registro updateMany
    */
-  export type registroUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type RegistroUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to update registros.
+     * The data used to update Registros.
      */
-    data: XOR<registroUpdateManyMutationInput, registroUncheckedUpdateManyInput>
+    data: XOR<RegistroUpdateManyMutationInput, RegistroUncheckedUpdateManyInput>
     /**
-     * Filter which registros to update
+     * Filter which Registros to update
      */
-    where?: registroWhereInput
+    where?: RegistroWhereInput
     /**
-     * Limit how many registros to update.
+     * Limit how many Registros to update.
      */
     limit?: number
   }
 
   /**
-   * registro upsert
+   * Registro upsert
    */
-  export type registroUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type RegistroUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the registro
+     * Select specific fields to fetch from the Registro
      */
-    select?: registroSelect<ExtArgs> | null
+    select?: RegistroSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the registro
+     * Omit specific fields from the Registro
      */
-    omit?: registroOmit<ExtArgs> | null
+    omit?: RegistroOmit<ExtArgs> | null
     /**
-     * The filter to search for the registro to update in case it exists.
+     * The filter to search for the Registro to update in case it exists.
      */
-    where: registroWhereUniqueInput
+    where: RegistroWhereUniqueInput
     /**
-     * In case the registro found by the `where` argument doesn't exist, create a new registro with this data.
+     * In case the Registro found by the `where` argument doesn't exist, create a new Registro with this data.
      */
-    create: XOR<registroCreateInput, registroUncheckedCreateInput>
+    create: XOR<RegistroCreateInput, RegistroUncheckedCreateInput>
     /**
-     * In case the registro was found with the provided `where` argument, update it with this data.
+     * In case the Registro was found with the provided `where` argument, update it with this data.
      */
-    update: XOR<registroUpdateInput, registroUncheckedUpdateInput>
+    update: XOR<RegistroUpdateInput, RegistroUncheckedUpdateInput>
   }
 
   /**
-   * registro delete
+   * Registro delete
    */
-  export type registroDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type RegistroDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the registro
+     * Select specific fields to fetch from the Registro
      */
-    select?: registroSelect<ExtArgs> | null
+    select?: RegistroSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the registro
+     * Omit specific fields from the Registro
      */
-    omit?: registroOmit<ExtArgs> | null
+    omit?: RegistroOmit<ExtArgs> | null
     /**
-     * Filter which registro to delete.
+     * Filter which Registro to delete.
      */
-    where: registroWhereUniqueInput
+    where: RegistroWhereUniqueInput
   }
 
   /**
-   * registro deleteMany
+   * Registro deleteMany
    */
-  export type registroDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type RegistroDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which registros to delete
+     * Filter which Registros to delete
      */
-    where?: registroWhereInput
+    where?: RegistroWhereInput
     /**
-     * Limit how many registros to delete.
+     * Limit how many Registros to delete.
      */
     limit?: number
   }
 
   /**
-   * registro without action
+   * Registro without action
    */
-  export type registroDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type RegistroDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the registro
+     * Select specific fields to fetch from the Registro
      */
-    select?: registroSelect<ExtArgs> | null
+    select?: RegistroSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the registro
+     * Omit specific fields from the Registro
      */
-    omit?: registroOmit<ExtArgs> | null
+    omit?: RegistroOmit<ExtArgs> | null
   }
 
 
@@ -1810,13 +1810,13 @@ export namespace Prisma {
   export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
 
 
-  export const registroOrderByRelevanceFieldEnum: {
+  export const RegistroOrderByRelevanceFieldEnum: {
     nome: 'nome',
     email: 'email',
     senha: 'senha'
   };
 
-  export type registroOrderByRelevanceFieldEnum = (typeof registroOrderByRelevanceFieldEnum)[keyof typeof registroOrderByRelevanceFieldEnum]
+  export type RegistroOrderByRelevanceFieldEnum = (typeof RegistroOrderByRelevanceFieldEnum)[keyof typeof RegistroOrderByRelevanceFieldEnum]
 
 
   /**
@@ -1855,69 +1855,69 @@ export namespace Prisma {
    */
 
 
-  export type registroWhereInput = {
-    AND?: registroWhereInput | registroWhereInput[]
-    OR?: registroWhereInput[]
-    NOT?: registroWhereInput | registroWhereInput[]
-    id?: IntFilter<"registro"> | number
-    nome?: StringFilter<"registro"> | string
-    email?: StringFilter<"registro"> | string
-    senha?: StringFilter<"registro"> | string
-    datanascimento?: DateTimeFilter<"registro"> | Date | string
+  export type RegistroWhereInput = {
+    AND?: RegistroWhereInput | RegistroWhereInput[]
+    OR?: RegistroWhereInput[]
+    NOT?: RegistroWhereInput | RegistroWhereInput[]
+    id?: IntFilter<"Registro"> | number
+    nome?: StringFilter<"Registro"> | string
+    email?: StringFilter<"Registro"> | string
+    senha?: StringFilter<"Registro"> | string
+    datanascimento?: DateTimeFilter<"Registro"> | Date | string
   }
 
-  export type registroOrderByWithRelationInput = {
+  export type RegistroOrderByWithRelationInput = {
     id?: SortOrder
     nome?: SortOrder
     email?: SortOrder
     senha?: SortOrder
     datanascimento?: SortOrder
-    _relevance?: registroOrderByRelevanceInput
+    _relevance?: RegistroOrderByRelevanceInput
   }
 
-  export type registroWhereUniqueInput = Prisma.AtLeast<{
+  export type RegistroWhereUniqueInput = Prisma.AtLeast<{
     id?: number
     email?: string
-    AND?: registroWhereInput | registroWhereInput[]
-    OR?: registroWhereInput[]
-    NOT?: registroWhereInput | registroWhereInput[]
-    nome?: StringFilter<"registro"> | string
-    senha?: StringFilter<"registro"> | string
-    datanascimento?: DateTimeFilter<"registro"> | Date | string
+    AND?: RegistroWhereInput | RegistroWhereInput[]
+    OR?: RegistroWhereInput[]
+    NOT?: RegistroWhereInput | RegistroWhereInput[]
+    nome?: StringFilter<"Registro"> | string
+    senha?: StringFilter<"Registro"> | string
+    datanascimento?: DateTimeFilter<"Registro"> | Date | string
   }, "id" | "email">
 
-  export type registroOrderByWithAggregationInput = {
+  export type RegistroOrderByWithAggregationInput = {
     id?: SortOrder
     nome?: SortOrder
     email?: SortOrder
     senha?: SortOrder
     datanascimento?: SortOrder
-    _count?: registroCountOrderByAggregateInput
-    _avg?: registroAvgOrderByAggregateInput
-    _max?: registroMaxOrderByAggregateInput
-    _min?: registroMinOrderByAggregateInput
-    _sum?: registroSumOrderByAggregateInput
+    _count?: RegistroCountOrderByAggregateInput
+    _avg?: RegistroAvgOrderByAggregateInput
+    _max?: RegistroMaxOrderByAggregateInput
+    _min?: RegistroMinOrderByAggregateInput
+    _sum?: RegistroSumOrderByAggregateInput
   }
 
-  export type registroScalarWhereWithAggregatesInput = {
-    AND?: registroScalarWhereWithAggregatesInput | registroScalarWhereWithAggregatesInput[]
-    OR?: registroScalarWhereWithAggregatesInput[]
-    NOT?: registroScalarWhereWithAggregatesInput | registroScalarWhereWithAggregatesInput[]
-    id?: IntWithAggregatesFilter<"registro"> | number
-    nome?: StringWithAggregatesFilter<"registro"> | string
-    email?: StringWithAggregatesFilter<"registro"> | string
-    senha?: StringWithAggregatesFilter<"registro"> | string
-    datanascimento?: DateTimeWithAggregatesFilter<"registro"> | Date | string
+  export type RegistroScalarWhereWithAggregatesInput = {
+    AND?: RegistroScalarWhereWithAggregatesInput | RegistroScalarWhereWithAggregatesInput[]
+    OR?: RegistroScalarWhereWithAggregatesInput[]
+    NOT?: RegistroScalarWhereWithAggregatesInput | RegistroScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"Registro"> | number
+    nome?: StringWithAggregatesFilter<"Registro"> | string
+    email?: StringWithAggregatesFilter<"Registro"> | string
+    senha?: StringWithAggregatesFilter<"Registro"> | string
+    datanascimento?: DateTimeWithAggregatesFilter<"Registro"> | Date | string
   }
 
-  export type registroCreateInput = {
+  export type RegistroCreateInput = {
     nome: string
     email: string
     senha: string
     datanascimento: Date | string
   }
 
-  export type registroUncheckedCreateInput = {
+  export type RegistroUncheckedCreateInput = {
     id?: number
     nome: string
     email: string
@@ -1925,14 +1925,14 @@ export namespace Prisma {
     datanascimento: Date | string
   }
 
-  export type registroUpdateInput = {
+  export type RegistroUpdateInput = {
     nome?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     senha?: StringFieldUpdateOperationsInput | string
     datanascimento?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type registroUncheckedUpdateInput = {
+  export type RegistroUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     nome?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
@@ -1940,7 +1940,7 @@ export namespace Prisma {
     datanascimento?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type registroCreateManyInput = {
+  export type RegistroCreateManyInput = {
     id?: number
     nome: string
     email: string
@@ -1948,14 +1948,14 @@ export namespace Prisma {
     datanascimento: Date | string
   }
 
-  export type registroUpdateManyMutationInput = {
+  export type RegistroUpdateManyMutationInput = {
     nome?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     senha?: StringFieldUpdateOperationsInput | string
     datanascimento?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type registroUncheckedUpdateManyInput = {
+  export type RegistroUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     nome?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
@@ -2000,13 +2000,13 @@ export namespace Prisma {
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
-  export type registroOrderByRelevanceInput = {
-    fields: registroOrderByRelevanceFieldEnum | registroOrderByRelevanceFieldEnum[]
+  export type RegistroOrderByRelevanceInput = {
+    fields: RegistroOrderByRelevanceFieldEnum | RegistroOrderByRelevanceFieldEnum[]
     sort: SortOrder
     search: string
   }
 
-  export type registroCountOrderByAggregateInput = {
+  export type RegistroCountOrderByAggregateInput = {
     id?: SortOrder
     nome?: SortOrder
     email?: SortOrder
@@ -2014,19 +2014,11 @@ export namespace Prisma {
     datanascimento?: SortOrder
   }
 
-  export type registroAvgOrderByAggregateInput = {
+  export type RegistroAvgOrderByAggregateInput = {
     id?: SortOrder
   }
 
-  export type registroMaxOrderByAggregateInput = {
-    id?: SortOrder
-    nome?: SortOrder
-    email?: SortOrder
-    senha?: SortOrder
-    datanascimento?: SortOrder
-  }
-
-  export type registroMinOrderByAggregateInput = {
+  export type RegistroMaxOrderByAggregateInput = {
     id?: SortOrder
     nome?: SortOrder
     email?: SortOrder
@@ -2034,7 +2026,15 @@ export namespace Prisma {
     datanascimento?: SortOrder
   }
 
-  export type registroSumOrderByAggregateInput = {
+  export type RegistroMinOrderByAggregateInput = {
+    id?: SortOrder
+    nome?: SortOrder
+    email?: SortOrder
+    senha?: SortOrder
+    datanascimento?: SortOrder
+  }
+
+  export type RegistroSumOrderByAggregateInput = {
     id?: SortOrder
   }
 
