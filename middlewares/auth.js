@@ -12,14 +12,15 @@ if(!token){
 }
 try {
   const decoded = jwt.verify(token.replace('Bearer ',''), JWT_SECRET)
-  console.log("token",decoded)
+  req.userID = decoded.id
+  next();
  
 } catch (error) {
   return res.status(401).json({error:'token inválido'})
   
 }
 
-next();
+
 
 
 };
