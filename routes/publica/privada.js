@@ -4,6 +4,7 @@ import { PrismaClient } from '@prisma/client';
 const router = express.Router();
 const prisma = new PrismaClient();
 
+// lista de uusuarios
 router.get('/usuarios', async (req, res) => {
 
 try {
@@ -19,6 +20,7 @@ try {
     
 })
 
+// get para perfil ou o que for necessario
 router.get('/usuario', async (req, res) => {
   try {
     const usuario = await prisma.registro.findUnique({
@@ -28,7 +30,7 @@ router.get('/usuario', async (req, res) => {
       select: {
         nome: true,
         email: true,
-        datanascimento: true
+        datanascimento: false
       }
     });
 
@@ -40,5 +42,6 @@ router.get('/usuario', async (req, res) => {
     res.status(500).json({ error: 'faha no servidor' });
   }
 });
+
 
 export default router;
