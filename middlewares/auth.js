@@ -13,6 +13,7 @@ if(!token){
 try {
   const decoded = jwt.verify(token.replace('Bearer ',''), JWT_SECRET)
   req.userID = decoded.id
+  
   next();
  
 } catch (error) {

@@ -1,6 +1,5 @@
 generator client {
   provider = "prisma-client-js"
-  output   = "../node_modules/.prisma/client"
 }
 
 datasource db {
@@ -8,10 +7,60 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Registro{
-  id             Int      @id @default(autoincrement())
-  nome           String   @db.VarChar(100)
-  email          String   @unique(map: "email") @db.VarChar(100)
-  senha          String   @db.VarChar(100)
-  datanascimento DateTime @db.Date
+model answers {
+  id                 Int                  @id @default(autoincrement())
+  question_id        Int?
+  texto              String               @db.Text
+  correta            Boolean?             @default(false)
+  questions          questions?           @relation(fields: [question_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "answers_ibfk_1")
+  respostas_usuarios respostas_usuarios[]
+
+  @@index([question_id], map: "question_id")
+}
+
+model questions {
+  id                 Int                  @id @default(autoincrement())
+  quiz_id            Int?
+  texto              String               @db.Text
+  answers            answers[]
+  quizzes            quizzes?             @relation(fields: [quiz_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "questions_ibfk_1")
+  respostas_usuarios respostas_usuarios[]
+
+  @@index([quiz_id], map: "quiz_id")
+}
+
+model quizzes {
+  id         Int         @id @default(autoincrement())
+  titulo     String      @db.VarChar(255)
+  criado_por Int?
+  questions  questions[]
+  user       user?       @relation(fields: [criado_por], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "quizzes_ibfk_1")
+
+  @@index([criado_por], map: "criado_por")
+}
+
+model respostas_usuarios {
+  id          Int        @id @default(autoincrement())
+  usuario_id  Int?
+  question_id Int?
+  resposta_id Int?
+  correta     Boolean?   @default(false)
+  user        user?      @relation(fields: [usuario_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "respostas_usuarios_ibfk_1")
+  questions   questions? @relation(fields: [question_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "respostas_usuarios_ibfk_2")
+  answers     answers?   @relation(fields: [resposta_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "respostas_usuarios_ibfk_3")
+
+  @@index([question_id], map: "question_id")
+  @@index([resposta_id], map: "resposta_id")
+  @@index([usuario_id], map: "usuario_id")
+}
+
+model user {
+  id                 Int                  @id @default(autoincrement())
+  nome               String               @db.VarChar(30)
+  email              String               @unique(map: "email") @db.VarChar(50)
+  senha              String               @db.VarChar(255)
+  data_nascimento    DateTime?            @db.Date
+  is_admin           Boolean?             @default(false)
+  quizzes            quizzes[]
+  respostas_usuarios respostas_usuarios[]
 }

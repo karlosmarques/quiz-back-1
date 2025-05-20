@@ -20,20 +20,22 @@ router.post("/registro", async (req, res) => {
     const salt = await bcrypt.genSalt(10);
     const hashsenha = await bcrypt.hash(Registro.senha, salt);
 
-      await prisma.registro.create({
+    console.log('Recebido:', Registro);
+
+      await prisma.user.create({
       data: {
         nome: Registro.nome,
         email: Registro.email,
         senha: hashsenha,
-        datanascimento: new Date(Registro.datanascimento)
+        data_nascimento: new Date(Registro.datanascimento),
+        is_admin: Registro.is_admin
       }
+      
     })
-
-
 
     res.status(201).json();
   } catch (error) {
-    console.error("Erro ao criar o usuário:", error);
+    console.log("Erro ao criar o usuário:", error);
     res.status(500).json({ error: "Erro ao criar o usuário" });
   }
 });
@@ -42,7 +44,7 @@ router.post("/registro", async (req, res) => {
 router.post("/login", async (req, res) => { 
   try {
     const login = req.body;
-    const usuario =await prisma.registro.findUnique({
+    const usuario = await prisma.user.findUnique({
       where: {
         email: login.email
         
@@ -75,7 +77,6 @@ router.post("/login", async (req, res) => {
 });
 
 
-  
 
 
 export default router;

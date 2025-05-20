@@ -3,6 +3,7 @@ import publicaRoutes from "./routes/publica/publica.js"
 import privadaRoutes from "./routes/publica/privada.js"
 import auth from './middlewares/auth.js';
 import cors from 'cors';
+import isAdmin from './middlewares/isAdmin.js';
 
 
 
