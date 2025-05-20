@@ -1,10 +1,9 @@
 import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
-const isAdmin = async (req, res, next) => {
+export const isAdmin = async (req, res, next) => {
 try {
 const usuario = await prisma.user.findUnique({
 where: { id: req.userID }, // req.userID vem do middleware auth
-select: { is_admin: true },
 });
 if (!usuario) {
 return res.status(404).json({ error: 'Usuário não encontrado' });

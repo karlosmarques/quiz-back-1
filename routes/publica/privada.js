@@ -1,5 +1,6 @@
 import express, { text } from 'express';
 import { PrismaClient } from '@prisma/client';
+import { isAdmin } from "../../middlewares/isAdmin.js"
 
 const router = express.Router();
 const prisma = new PrismaClient();
@@ -44,7 +45,7 @@ router.get('/usuario', async (req, res) => {
 
 });
 
-router.post('/quizzes',async(req,res)=>{
+router.post('/quizzes', isAdmin, async(req,res)=>{
   
   try {
     const quiz = await prisma.quizzes.create({
