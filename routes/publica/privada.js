@@ -94,41 +94,6 @@ router.post('/answers',async(req,res)=>{
     
   }
 })
-// resposta do ususario
-router.post('/respostas',async(req,res)=>{
-  const {question_id,resposta_id,correta} = req.body;
-  try {
-    const resposta = await prisma.resposta_usuarios.create({
-      data: {
-        usuario_id: req.userID,
-        question_id: question_id,
-        resposta_id: resposta_id,
-        correta: correta
-      }
-    });
-    res.status(201).json({message:'resposta criada com sucesso', resposta});
-  } catch (error) {
-    res.status(500).json({ error: 'Erro ao criar resposta ' });
-    
-  }
-})
-router.get('/respostas', async (req, res) => {
-  try {
-    const respostas = await prisma.resposta_usuarios.findMany({
-      where: {
-        usuario_id: req.userID
-      },
-      include: {
-        question: true,
-        resposta: true
-      }
-    });
-    res.status(200).json({ message: 'respostas listadas com sucesso', respostas });
-  } catch (error) {
-    console.error('Erro no /respostas:', error); // importante para debug
-    res.status(500).json({ error: 'Erro ao listar respostas' });
-  }
-});
 
 router.get('/quizzes', async (req, res) => {
   try {
@@ -175,8 +140,61 @@ router.get('/quizzes/:id', async (req, res) => {
   }
 });
 
+// POST - Salvar pontuação do quiz realizada pelo usuário
+router.post('/responder-quiz', async (req, res) => {
+  const { quiz_id, score } = req.body;
+  const user_id = req.userID;
 
+  if (!quiz_id || score === undefined) {
+    return res.status(400).json({ error: 'quiz_id e score são obrigatórios' });
+  }
 
+  try {
+    const respostaUsuario = await prisma.respostas_usuarios.create({
+      data: {
+        quiz_id,
+        user_id,
+        score: parseFloat(score),
+      },
+    });
+
+    res.status(201).json({ message: 'Pontuação salva com sucesso', respostaUsuario });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Erro ao salvar pontuação' });
+  }
+});
+
+// GET - Buscar histórico de quizzes realizados pelo usuário com média de desempenho
+router.get('/historico', async (req, res) => {
+  const user_id = req.userID;
+
+  try {
+    // Busca todas as respostas do usuário
+    const respostas = await prisma.respostas_usuarios.findMany({
+      where: { user_id },
+      include: {
+        quiz: true, // inclui dados do quiz para mostrar título, por exemplo
+      },
+      orderBy: {
+        createdAt: 'desc',
+      },
+    });
+
+    // Calcula média geral das pontuações do usuário
+    const media = respostas.length
+      ? respostas.reduce((acc, cur) => acc + cur.score, 0) / respostas.length
+      : 0;
+
+    res.status(200).json({
+      historico: respostas,
+      media,
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Erro ao buscar histórico' });
+  }
+});
 
 
 export default router;

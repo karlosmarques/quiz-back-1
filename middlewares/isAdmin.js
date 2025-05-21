@@ -3,7 +3,7 @@ const prisma = new PrismaClient();
 export const isAdmin = async (req, res, next) => {
 try {
 const usuario = await prisma.user.findUnique({
-where: { id: req.userID }, // req.userID vem do middleware auth
+where: { id: req.userID },
 });
 if (!usuario) {
 return res.status(404).json({ error: 'Usuário não encontrado' });
