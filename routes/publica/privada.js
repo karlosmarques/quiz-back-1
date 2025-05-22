@@ -5,21 +5,6 @@ import { isAdmin } from "../../middlewares/isAdmin.js"
 const router = express.Router();
 const prisma = new PrismaClient();
 
-// lista de uusuarios
-router.get('/usuarios', async (req, res) => {
-
-try {
-    
-    const usuarios = await prisma.user.findMany();
-
-
-    res.status(200).json({message:'usuarios listados com sucesso',usuarios});
-
-} catch (error) {
-    res.status(500).json({ error: 'faha no servidor' });
-}
-    
-})
 
 // get para perfil ou o que for necessario
 router.get('/usuario', async (req, res) => {
@@ -140,6 +125,9 @@ router.get('/quizzes/:id', async (req, res) => {
   }
 });
 
+
+
+
 // POST - Salvar pontuação do quiz realizada pelo usuário
 router.post('/responder-quiz', async (req, res) => {
   const { quiz_id, score } = req.body;
@@ -195,6 +183,32 @@ router.get('/historico', async (req, res) => {
     res.status(500).json({ error: 'Erro ao buscar histórico' });
   }
 });
+// DELETE - Excluir quiz (somente admin)
+router.delete('/quizzes/:id', isAdmin, async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    // Verifica se o quiz existe
+    const quiz = await prisma.quizzes.findUnique({
+      where: { id: parseInt(id) }
+    });
+
+    if (!quiz) {
+      return res.status(404).json({ error: 'Quiz não encontrado' });
+    }
+
+    // Exclui o quiz (cascata ou via deletes manuais se necessário)
+    await prisma.quizzes.delete({
+      where: { id: parseInt(id) }
+    });
+
+    res.status(200).json({ message: 'Quiz excluído com sucesso' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Erro ao excluir quiz' });
+  }
+});
+
 
 
 export default router;

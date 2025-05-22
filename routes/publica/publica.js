@@ -58,14 +58,14 @@ router.post("/login", async (req, res) => {
       return res.status(401).json({ error: "Usuário não encontrado" });
     }
 
-    // comprara a senha do bnco com que foi digitdo pela pessoa
+   
     const senhaValida = await bcrypt.compare(login.senha, usuario.senha);
     if (!senhaValida){
       return res.status(400).json({ error: "Senha inválida" });
     }
    
 
-    // token jtw
+    
     const token = jwt.sign({ id: usuario.id, is_admin: usuario.is_admin }, JWT_SECRET, {
       expiresIn: "2h"
     });
@@ -83,15 +83,15 @@ router.post('/esqueci-senha', async (req, res) => {
   const { email } = req.body;
 
   try {
-    // Verifica se o usuário existe
+    
     const usuario = await prisma.user.findUnique({ where: { email } });
     if (!usuario) return res.status(404).json({ message: 'Usuário não encontrado.' });
 
-    // Gera token e validade de 1 hora
+    
     const token = crypto.randomBytes(32).toString('hex');
     const validade = new Date(Date.now() + 60 * 60 * 1000);
 
-    // Salva o token no banco
+    
     await prisma.user.update({
       where: { email },
       data: {
@@ -100,12 +100,12 @@ router.post('/esqueci-senha', async (req, res) => {
       },
     });
 
-    // Cria o transporter para envio de e-mail
+  
     const transport = nodemailer.createTransport({
       service: 'gmail',
       auth: {
-        user: process.env.EMAIL_USER, // seu_email@gmail.com
-        pass: process.env.EMAIL_PASS  // senha de app do Gmail
+        user: process.env.EMAIL_USER, 
+        pass: process.env.EMAIL_PASS  
       }
     });
 

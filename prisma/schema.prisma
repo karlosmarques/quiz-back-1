@@ -33,7 +33,7 @@ model quizzes {
   criado_por Int?
   questions  questions[]
   user       user?                @relation(fields: [criado_por], references: [id], onDelete: Cascade)
-  respostas  respostas_usuarios[] // 👈 ADICIONADO
+  respostas  respostas_usuarios[] 
 
   @@index([criado_por])
 }
@@ -46,7 +46,7 @@ model user {
   data_nascimento   DateTime?            @db.Date
   is_admin          Boolean?             @default(false)
   quizzes           quizzes[]
-  respostas         respostas_usuarios[] // 👈 ADICIONADO
+  respostas         respostas_usuarios[] 
   token_recuperacao String?              @db.VarChar(255)
   token_expira_em   DateTime?
 }
