@@ -31,11 +31,11 @@ router.get('/usuario', async (req, res) => {
 });
 
 router.post('/quizzes', isAdmin, async(req,res)=>{
-  
+    const{ titulo } = req.body;
   try {
     const quiz = await prisma.quizzes.create({
       data: {
-        titulo: req.body.titulo,
+        titulo: titulo,
         criado_por: req.userID
       }
     });
@@ -48,7 +48,7 @@ router.post('/quizzes', isAdmin, async(req,res)=>{
 
 // post criar pergunta
 router.post('/questions',async(req,res)=>{
-  const {quiz_id,texto} = req.body;
+  const {texto} = req.body;
   try {
     const question = await prisma.questions.create({
       data: {
