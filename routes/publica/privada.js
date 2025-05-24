@@ -47,21 +47,24 @@ router.post('/quizzes', isAdmin, async(req,res)=>{
 })
 
 // post criar pergunta
-router.post('/questions',async(req,res)=>{
-  const {texto} = req.body;
+router.post('/questions', async (req, res) => {
+  const { texto, quiz_id } = req.body;
+
   try {
     const question = await prisma.questions.create({
       data: {
-        quiz_id: quiz_id,
+        quiz_id: parseInt(quiz_id), 
         texto: texto
       }
     });
-    res.status(201).json({message:'pergunta criada com sucesso', question});
+
+    res.status(201).json({ message: 'Pergunta criada com sucesso', question });
   } catch (error) {
-    res.status(500).json({ error: 'Erro ao criar pergunta ' });
-    
+    console.error(error); 
+    res.status(500).json({ error: 'Erro ao criar pergunta' });
   }
-})
+});
+
 // criar resposta
 router.post('/answers',async(req,res)=>{
   const {question_id,texto,correta} = req.body;
