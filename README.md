@@ -1,4 +1,4 @@
- # Quiz da Galera
+# Quiz da Galera
 Este projeto é um sistema de quiz onde **apenas administradores autenticados** podem
 **criar, editar e excluir quizzes**, enquanto **alunos logados** podem **responder quizzes e
 visualizar os resultados**.
@@ -48,49 +48,43 @@ npm start
 -✅ Resposta a quizzes com exibição de resultado
 -✅ Área administrativa com criação, edição e exclusão de quizzes
 -✅ Proteção de rotas por autenticação
-
 ## 4. Estrutura do Projeto
 ```
-
 ├── quiz-front
-│   ├── public/
-│   ├── src/
-│   │   ├── components/                <- 
-│   │   │   ├── Cards/                 <- 
-│   │   │   ├── Cardsperguntas/        <- 
-│   │   │   └── Navbar/                <- Navegação principal
-│   │   ├── pages/                     <- Páginas do projeto
-│   │   │   ├── CriarQuiz/             <- Criar um novo quiz com perguntas e respostas
-│   │   │   ├── Esqueci_minha_senha/   <- Página de recuperação de senha
-│   │   │   ├── Home/                  <- Quizzes disponíveis e funcionalidades específicas do administrador
-│   │   │   ├── Login/                 <- Página de autenticação
-│   │   │   ├── Paginaquiz/            <- Exibe um quiz específico
-│   │   │   └── perfil/                <- Página de perfil do usuário
-│   │   │   ├── Redefinir_senha/       <- Permite que o usuário redefina sua senha
-│   │   │   └── Registro/              <- Registrar novos usuários
-│   │   │   └── App.js                 <- Conecta cada URL com um componente   
-│   │   │   └── index.js               <- Inicializa toda a aplicação no navegador
-│   ├── package.json                   <- Dependências e scripts
-│   ├── package-lock.json             
-│   └── README.md
-
-      
+│ ├── public/
+│ ├── src/
+│ │ ├── components/
+│ │ │ ├── Cards/ <- Card da tela principal
+│ │ │ ├── Cardsperguntas/ <- Onde ficam as questões do quiz
+│ │ │ └── Navbar/ <- Navegação principal
+│ │ ├── pages/ <- Páginas do projeto
+│ │ │ ├── CriarQuiz/ <- Criar um novo quiz com perguntas e respostas
+│ │ │ ├── Esqueci_minha_senha/ <- Página de recuperação de senha
+│ │ │ ├── Home/ <- Quizzes disponíveis e funcionalidades específicas do
+administrador
+│ │ │ ├── Login/ <- Página de autenticação
+│ │ │ ├── Paginaquiz/ <- Exibe um quiz específico
+│ │ │ └── perfil/ <- Página de perfil do usuário
+│ │ │ ├── Redefinir_senha/ <- Permite que o usuário redefina sua senha
+│ │ │ └── Registro/ <- Registrar novos usuários
+│ │ │ └── App.js <- Conecta cada URL com um componente
+│ │ │ └── index.js <- Inicializa toda a aplicação no navegador
+│ ├── package.json <- Dependências e scripts
+│ ├── package-lock.json
+│ └── README.md
 ├── quiz-back/
-│   ├── middlewares/                  <- 
-│   │   ├── auth.js                   <- Protege rotas do usuário autenticado
-│   │   └── isAdmin.js                <- Verifica se o usuário autenticado é administrador
-│   ├── node_modules/                 <- Pacotes e dependências do projeto
-│   ├── prisma/                       <- 
-│   │   └── schema.prisma             <- Estrutura do banco de dados
-│   └── routes/                       <- 
-│   │   ├── publica.js                <- 
-│   │   └── privada.js                <- 
-│   ├── package.json                  <- Dependências e scripts
-│   ├── package-lock.json             <-
-│   ├── server.js                     <-
-│   ├── .env                          <-
-│   └── README.md                     <-
-```       
-
-
-
+│ ├── middlewares/
+│ │ ├── auth.js <- Protege rotas do usuário autenticado
+│ │ └── isAdmin.js <- Verifica se o usuário autenticado é administrador
+│ ├── node_modules/ <- Pacotes e dependências do projeto
+│ ├── prisma/
+│ │ └── schema.prisma <- Estrutura do banco de dados
+│ └── routes/ <- Rotas
+│ │ ├── publica.js <- Rotas de usuário
+│ │ └── privada.js <- Rotas gerais
+│ ├── package.json <- Dependências e scripts
+│ ├── package-lock.json
+│ ├── server.js <- Chamada de rotas
+│ ├── .env <- Dados sensíveis
+│ └── README.md
+```
