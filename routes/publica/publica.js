@@ -29,7 +29,6 @@ router.post("/registro", async (req, res) => {
         nome: Registro.nome,
         email: Registro.email,
         senha: hashsenha,
-        data_nascimento: new Date(Registro.datanascimento),
         is_admin: Registro.is_admin
       }
       
@@ -64,13 +63,18 @@ router.post("/login", async (req, res) => {
       return res.status(400).json({ error: "Senha inválida" });
     }
    
+const token = jwt.sign({ id: usuario.id, is_admin: usuario.is_admin }, JWT_SECRET, {
+  expiresIn: "2h"
+});
+
+res.status(200).json({
+  id: usuario.id,
+  role: usuario.is_admin ? 'ADMIN' : 'USER',
+  token: token
+});
 
     
-    const token = jwt.sign({ id: usuario.id, is_admin: usuario.is_admin }, JWT_SECRET, {
-      expiresIn: "2h"
-    });
-
-     res.status(200).json(token);
+    
   } catch (error){ 
     console.error("Erro ao fazer o login:",error);
     res.status(500).json({ error: "Erro ao fazer o login" });

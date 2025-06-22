@@ -39,17 +39,15 @@ model quizzes {
 }
 
 model user {
-  id                Int                  @id @default(autoincrement())
-  nome              String               @db.VarChar(30)
-  email             String               @unique @db.VarChar(50)
-  senha             String               @db.VarChar(255)
-  data_nascimento   DateTime?            @db.Date
-  is_admin          Boolean?             @default(false)
-  quizzes           quizzes[]
-  respostas         respostas_usuarios[] 
-  token_recuperacao String?              @db.VarChar(255)
-  token_expira_em   DateTime?
+  id        Int                  @id @default(autoincrement())
+  nome      String               @db.VarChar(30)
+  email     String               @unique @db.VarChar(50)
+  senha     String               @db.VarChar(255)
+  is_admin  Boolean              @default(false)  
+  quizzes   quizzes[]
+  respostas respostas_usuarios[]
 }
+
 
 model respostas_usuarios {
   id        Int      @id @default(autoincrement())

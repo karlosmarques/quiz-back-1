@@ -21,9 +21,6 @@ try {
   
 }
 
-
-
-
 };
 
 export default auth;
