@@ -302,4 +302,20 @@ router.delete('/quizzes/:id', auth, isAdmin, async (req, res) => {
   }
 });
 
+router.put("/quizzes/:id", isAdmin, async (req, res) => {
+const { id } = req.params; 
+const { titulo } = req.body;
+
+  try {
+    const quiz = await prisma.quizzes.update({
+      where: { id: parseInt(id) },
+      data: { titulo }
+    });
+    res.status(200).json({ message: 'Quiz atualizado com sucesso', quiz });
+  } catch (error){
+    console.error(error);
+    res.status(500).json({ error: 'Erro ao atualizar quiz' });
+  }
+});
+
 export default router;
