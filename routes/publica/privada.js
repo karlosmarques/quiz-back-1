@@ -5,6 +5,7 @@ import auth from '../../middlewares/auth.js';
 
 const router = express.Router();
 const prisma = new PrismaClient();
+
 // GET perfil do usuário autenticado
 router.get('/usuario', auth, async (req, res) => {
   try {
@@ -70,25 +71,51 @@ router.get('/quizzes-public/:id', auth, async (req, res) => {
 
 // POST criar quiz (somente admin)
 router.post('/quizzes', auth, isAdmin, async (req, res) => {
-  const { titulo } = req.body;
-  if (!titulo) {
-    return res.status(400).json({ error: 'O título é obrigatório' });
+  const { titulo, perguntas } = req.body;
+
+  // Validação
+  if (!titulo || !Array.isArray(perguntas) || perguntas.length === 0) {
+    return res.status(400).json({ error: 'Título e perguntas são obrigatórios' });
   }
+
   try {
+    // criar quiz
     const quiz = await prisma.quizzes.create({
       data: {
         titulo,
         criado_por: req.userID
       }
     });
-    res.status(201).json({ message: 'Quiz criado com sucesso', quiz });
+
+    for (const pergunta of perguntas) {
+      // Cria pergunta
+      const novaPergunta = await prisma.questions.create({
+        data: {
+          texto: pergunta.texto,
+          quiz_id: quiz.id
+        }
+      });
+
+      // Cria respostas
+for (const opcao of pergunta.opcoes) {
+  await prisma.answers.create({
+    data: {
+      question_id: novaPergunta.id,
+      texto: opcao.texto,
+      correta: opcao.correta === true
+    }
+  });
+}
+    }
+    res.status(201).json({ message: 'Quiz criado com sucesso', quiz_id: quiz.id });
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Erro ao criar quiz' });
+    console.error('[ERRO AO CRIAR QUIZ COMPLETO]', error);
+    res.status(500).json({ error: 'Erro ao criar quiz completo' });
   }
 });
 
-// POST criar pergunta (requer auth)
+
+// POST criar pergunta 
 router.post('/questions', auth, async (req, res) => {
   const { texto, quiz_id } = req.body;
   if (!texto || !quiz_id) {
@@ -108,7 +135,7 @@ router.post('/questions', auth, async (req, res) => {
   }
 });
 
-// POST criar resposta (requer auth)
+// POST criar resposta 
 router.post('/answers', auth, async (req, res) => {
   const { question_id, texto, correta } = req.body;
   if (!question_id || !texto || typeof correta !== 'boolean') {
@@ -166,38 +193,87 @@ router.get('/quizzes/:id', auth, isAdmin, async (req, res) => {
   }
 });
 
-// POST salvar pontuação do quiz realizado pelo usuário (requer auth)
 router.post('/responder-quiz', auth, async (req, res) => {
-  const { quiz_id, score } = req.body;
+  const { quiz_id, respostas } = req.body; 
   const user_id = req.userID;
 
-  if (!quiz_id || score === undefined) {
-    return res.status(400).json({ error: 'quiz_id e score são obrigatórios' });
+  if (!quiz_id || !Array.isArray(respostas) || respostas.length === 0) {
+    return res.status(400).json({ error: 'quiz_id e respostas são obrigatórios' });
   }
+
   try {
+
+    // Busca todas as respostas corretas do quiz
+    const perguntasDoQuiz = await prisma.questions.findMany({
+      where: { quiz_id: Number(quiz_id) },
+      include: {
+        answers: {
+          where: { correta: true }
+        }
+      }
+    });
+
+ 
+    const respostasCorretasMap = {};
+    perguntasDoQuiz.forEach((pergunta) => {
+      if (pergunta.answers.length > 0) {
+        respostasCorretasMap[pergunta.id] = pergunta.answers[0].id;
+      }
+    });
+
+    // Contagem dos acertos
+    let acertos = 0;
+    respostas.forEach(({ question_id, answer_id }) => {
+      if (respostasCorretasMap[question_id] === answer_id) {
+        acertos++;
+      }
+    });
+
+    const total = perguntasDoQuiz.length;
+    const score = (acertos / total) * 100;
+
+    // Salva resultado do usuário
     const respostaUsuario = await prisma.respostas_usuarios.create({
       data: {
         quiz_id: Number(quiz_id),
         user_id,
-        score: parseFloat(score),
+        score
       }
     });
-    res.status(201).json({ message: 'Pontuação salva com sucesso', respostaUsuario });
+
+    res.status(201).json({
+      message: 'Respostas registradas com sucesso',
+      resultado: {
+        total,
+        acertos,
+        erros: total - acertos,
+        score: `${score.toFixed(1)}%`
+      }
+    });
+
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Erro ao salvar pontuação' });
+    console.error('[ERRO AO REGISTRAR RESPOSTAS]', error);
+    res.status(500).json({ error: 'Erro ao registrar respostas' });
   }
 });
+
 
 // GET histórico do usuário (requer auth)
 router.get('/historico', auth, async (req, res) => {
   const user_id = req.userID;
   try {
     const respostas = await prisma.respostas_usuarios.findMany({
-      where: { user_id },
-      include: { quiz: true },
-      orderBy: { createdAt: 'desc' },
-    });
+  where: { user_id },
+  include: {
+    quiz: {
+      include: {
+        questions: true
+      }
+    }
+  },
+  orderBy: { createdAt: 'desc' },
+});
+  console.log('Respostas com quiz e perguntas:', JSON.stringify(respostas, null, 2));
     const media = respostas.length
       ? respostas.reduce((acc, cur) => acc + cur.score, 0) / respostas.length
       : 0;

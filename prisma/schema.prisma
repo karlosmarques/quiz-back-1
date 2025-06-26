@@ -56,8 +56,8 @@ model respostas_usuarios {
   score     Float
   createdAt DateTime @default(now())
 
-  user user    @relation(fields: [user_id], references: [id])
-  quiz quizzes @relation(fields: [quiz_id], references: [id])
+  user user @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  quiz quizzes @relation(fields: [quiz_id], references: [id], onDelete: Cascade)
 
   @@index([user_id])
   @@index([quiz_id])
