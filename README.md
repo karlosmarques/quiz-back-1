@@ -15,7 +15,7 @@ visualizar os resultados**.
 ## 2. Como Rodar o Projeto
 ### 2.1 Clonando o Repositório Back
 ```bash
-$ git clone git@github.com:karlosmarques/quiz-back.git
+$ git clone https://github.com/beladays/quiz-back.git
 ````
 ### 2.2 Clonando o Repositório Front
 ```bash
