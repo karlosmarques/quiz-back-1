@@ -14,6 +14,8 @@ model answers {
   correta     Boolean?   @default(false)
   questions   questions? @relation(fields: [question_id], references: [id], onDelete: Cascade)
 
+  resposta_usuario_items resposta_usuario_item[]
+
   @@index([question_id])
 }
 
@@ -24,6 +26,8 @@ model questions {
   answers answers[]
   quizzes quizzes?  @relation(fields: [quiz_id], references: [id], onDelete: Cascade)
 
+  resposta_usuario_items resposta_usuario_item[]
+
   @@index([quiz_id])
 }
 
@@ -33,7 +37,7 @@ model quizzes {
   criado_por Int?
   questions  questions[]
   user       user?                @relation(fields: [criado_por], references: [id], onDelete: Cascade)
-  respostas  respostas_usuarios[] 
+  respostas  respostas_usuarios[]
 
   @@index([criado_por])
 }
@@ -43,11 +47,10 @@ model user {
   nome      String               @db.VarChar(30)
   email     String               @unique @db.VarChar(50)
   senha     String               @db.VarChar(255)
-  is_admin  Boolean              @default(false)  
+  is_admin  Boolean              @default(false)
   quizzes   quizzes[]
   respostas respostas_usuarios[]
 }
-
 
 model respostas_usuarios {
   id        Int      @id @default(autoincrement())
@@ -56,9 +59,26 @@ model respostas_usuarios {
   score     Float
   createdAt DateTime @default(now())
 
-  user user @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  user user    @relation(fields: [user_id], references: [id], onDelete: Cascade)
   quiz quizzes @relation(fields: [quiz_id], references: [id], onDelete: Cascade)
+
+  resposta_usuario_items resposta_usuario_item[]
 
   @@index([user_id])
   @@index([quiz_id])
+}
+
+model resposta_usuario_item {
+  id                   Int                  @id @default(autoincrement())
+  resposta_usuario_id   Int
+  question_id          Int
+  answer_id            Int
+
+  respostas_usuarios    respostas_usuarios   @relation(fields: [resposta_usuario_id], references: [id], onDelete: Cascade)
+  questions             questions            @relation(fields: [question_id], references: [id], onDelete: Cascade)
+  answers               answers              @relation(fields: [answer_id], references: [id], onDelete: Cascade)
+
+  @@index([resposta_usuario_id])
+  @@index([question_id])
+  @@index([answer_id])
 }
