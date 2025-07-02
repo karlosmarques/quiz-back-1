@@ -267,62 +267,68 @@ router.post('/responder-quiz', auth, async (req, res) => {
   }
 
   try {
-    // Busca todas as respostas corretas do quiz
-    const perguntasDoQuiz = await prisma.questions.findMany({
-      where: { quiz_id: Number(quiz_id) },
-      include: {
-        answers: {
-          where: { correta: true }
-        }
-      }
-    });
 
-    // Mapeia respostas corretas
-    const respostasCorretasMap = {};
-    perguntasDoQuiz.forEach((pergunta) => {
-      if (pergunta.answers.length > 0) {
-        respostasCorretasMap[pergunta.id] = pergunta.answers[0].id;
-      }
-    });
 
-    // Contagem dos acertos
-    let acertos = 0;
-    respostas.forEach(({ question_id, answer_id }) => {
-      if (respostasCorretasMap[question_id] === answer_id) {
-        acertos++;
-      }
-    });
 
-    const total = perguntasDoQuiz.length;
-    const score = (acertos / total) * 100;
+// Busca perguntas do quiz
+const perguntasDoQuiz = await prisma.questions.findMany({
+  where: { quiz_id: Number(quiz_id) },
+  select: { id: true }
+});
+const total = perguntasDoQuiz.length;
 
-    // Salva resultado do usuário na tabela respostas_usuarios
-    const respostaUsuario = await prisma.respostas_usuarios.create({
-      data: {
-        quiz_id: Number(quiz_id),
-        user_id,
-        score
-      }
-    });
+// Busca respostas corretas
+const respostasCorretas = await prisma.answers.findMany({
+  where: {
+    correta: true,
+    questions: {
+      quiz_id: Number(quiz_id)
+    }
+  },
+  select: {
+    question_id: true,
+    id: true
+  }
+});
 
-    // Agora salva cada resposta na tabela resposta_usuario_item
-    const respostasItensData = respostas.map(({ question_id, answer_id }) => ({
-      resposta_usuario_id: respostaUsuario.id,
-      question_id,
-      answer_id
-    }));
+// Mapeia respostas corretas
+const respostasCorretasMap = {};
+respostasCorretas.forEach(({ question_id, id }) => {
+  respostasCorretasMap[question_id] = id;
+});
 
-    await prisma.resposta_usuario_item.createMany({
-      data: respostasItensData
-    });
+// Contagem dos acertos
+let acertos = 0;
+respostas.forEach(({ question_id, answer_id }) => {
+  if (respostasCorretasMap[question_id] === answer_id) {
+    acertos++;
+  }
+});
 
-// lista de perguntas erradas
+const score = (acertos / total) * 100;
+
+// Salva resultado
+const respostaUsuario = await prisma.respostas_usuarios.create({
+  data: {
+    quiz_id: Number(quiz_id),
+    user_id,
+    score
+  }
+});
+
+// Salva respostas individuais
+const respostasItensData = respostas.map(({ question_id, answer_id }) => ({
+  resposta_usuario_id: respostaUsuario.id,
+  question_id,
+  answer_id
+}));
+
+await prisma.resposta_usuario_item.createMany({ data: respostasItensData });
+
+// Perguntas erradas
 const errosDetalhados = respostas
   .filter(({ question_id, answer_id }) => respostasCorretasMap[question_id] !== answer_id)
-  .map(({ question_id }) => ({
-    question_id,
-    resposta_correta: respostasCorretasMap[question_id]
-  }));
+  .map(({ question_id }) => ({ question_id }));
 
 res.status(201).json({
   message: 'Respostas registradas com sucesso',
@@ -331,7 +337,7 @@ res.status(201).json({
     acertos,
     erros: total - acertos,
     score: `${score.toFixed(1)}%`,
-    errosDetalhados
+    perguntasErradas: errosDetalhados 
   }
 });
 
@@ -369,24 +375,42 @@ router.get('/historico', auth, async (req, res) => {
 // GET histórico de todos os usuários (somente admin)
 router.get('/historico/admin', auth, isAdmin, async (req, res) => {
   try {
-   const respostas = await prisma.respostas_usuarios.findMany({
-  select: {
-    id: true,
-    score: true,
-    createdAt: true,   
-    user: { select: { nome: true, email: true } },
-    quiz: { select: { titulo: true } }
-  },
-  orderBy: { createdAt: 'desc' }
+    const respostas = await prisma.respostas_usuarios.findMany({
+      select: {
+        id: true,
+        score: true,
+        createdAt: true,
+        user: { select: { nome: true, email: true } },
+        quiz: { select: { titulo: true } }
+      },
+      orderBy: { createdAt: 'desc' }
+    });
+
+    // calcular média por quiz
+
+const mediasPorQuiz = {};
+const contagemPorQuiz = {};
+
+respostas.forEach(({ quiz, score }) => {
+  const titulo = quiz.titulo;
+
+  if (!(titulo in mediasPorQuiz)) {
+    mediasPorQuiz[titulo] = 0;
+    contagemPorQuiz[titulo] = 0;
+  }
+
+  mediasPorQuiz[titulo] += score;
+  contagemPorQuiz[titulo] += 1;
 });
 
+Object.keys(mediasPorQuiz).forEach(titulo => {
+  mediasPorQuiz[titulo] = mediasPorQuiz[titulo] / contagemPorQuiz[titulo];
+});
 
-    // Calcula média geral dos scores (opcional)
-    const media = respostas.length
-      ? respostas.reduce((acc, cur) => acc + cur.score, 0) / respostas.length
-      : 0;
-
-    res.status(200).json({ resultados: respostas, media });
+    res.status(200).json({
+      resultados: respostas,
+      mediasPorQuiz
+    });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Erro ao buscar histórico geral' });
