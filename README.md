@@ -8,7 +8,7 @@ visualizar os resultados**.
 - **Prisma (v6.11.1)** – ORM para acesso ao banco de dados
 - **MySQL2 (v3.14.1)** – Conexão com banco de dados MySQL
 - **bcrypt (v6.0.0)** – Criptografia de senhas
-- **jsonwebtoken** (v9.0.2) – Autenticação via JWT
+- **jsonwebtoken** (v9.0.2) – Autenticação via jwt
 - **dotenv** (v16.5.0) – Variáveis de ambiente
 - **cors** (v2.8.5) – Permissão de requisições entre front-end e back-end
 -
