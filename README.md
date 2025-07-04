@@ -28,7 +28,7 @@ arquivo `.env`.
 cd quiz-back
 npm i
 npx prisma generate
-node --watch server.js
+npm start
 ````
 ### 2.4 Rodar o Front-End
 ```bash
